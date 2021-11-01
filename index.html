@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - PeaceFare Monopoly Game</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>PeaceFare Monopoly Game</title> 
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+  <section>
+        <br>  </br>
+    
+    <img src="https://github.com/lucylow/PeaceFare/blob/main/game_assets/Screen%20Shot%202021-10-31%20at%208.37.31%20PM.png?raw=true" alt="Girl in a jacket" style="height:600px;">
+
+    <br>  </br>
+      <br>  </br>
+    
+  <p><button onclick="sim.tick()">PeaceFare</button> <label><input id="autotick" type="checkbox"> Auto</label> <button onclick="sim.work()">Go to work</button> <span id="time">0:00</span></p>
+      <br>  </br> 
+  <br>  </br>
+</section>
+<section>
+  <p><input id="physical" type="range" min="-100" max="100" value="0"> Physical</p>
+  <p><input id="energy" type="range" min="-100" max="100" value="0"> Energy</p>
+  <p><input id="comfort" type="range" min="-100" max="100" value="0"> Comfort</p>
+  <p><input id="hunger" type="range" min="-100" max="100" value="0"> Hunger</p>
+  <p><input id="hygiene" type="range" min="-100" max="100" value="0"> Hygiene</p>
+  <p><input id="bladder" type="range" min="-100" max="100" value="0"> Bladder</p>
+</section>
+
+<section>
+  <p><input id="mental" type="range" min="-100" max="100" value="0"> Mental</p>
+  <p><input id="alertness" type="range" min="-100" max="100" value="0"> Alertness</p>
+  <p><input id="stress" type="range" min="-100" max="100" value="0"> Stress</p>
+  <p><input id="environment" type="range" min="-100" max="100" value="0"> Environment</p>
+  <p><input id="social" type="range" min="-100" max="100" value="0"> Social</p>
+  <p><input id="entertained" type="range" min="-100" max="100" value="0"> Entertained</p>
+</section>
+
+<section>
+  <p><input id="happyNow" type="range" min="-100" max="100" value="0"> Happy (now)</p>
+  <p><input id="happyDay" type="range" min="-100" max="100" value="0"> Happy (day)</p>
+  <p><input id="happyWeek" type="range" min="-100" max="100" value="0"> Happy (week)</p>
+  <p><input id="happyLife" type="range" min="-100" max="100" value="0"> Happy (life)</p>
+</section>
+
+<head>
+  <title></title>
+  <link rel="stylesheet" type="text/css" href="final.css" />
+  <script src="final.js"></script>
+
+</head>
+
+<body>
+  
+      <svg transform="translate(672,0)" viewBox="0 0 100 100" width="12em" height="12em"></svg>
+  
+  <section class="game_board">
+    <div class="row">
+      <div class="cell square" id="square7">
+        <p id="square7-name" class="square-name"></p>
+        <p id="square7-value"></p>
+        <p id="square7-owner"></p>
+        <p id="square7-residents"></p>
+      </div>
+      <div class="cell square" id="square8">
+        <p id="square8-name" class="square-name"></p>
+        <p id="square8-value"></p>
+        <p id="square8-owner"></p>
+        <p id="square8-residents"></p>
+      </div>
+      <div class="cell square" id="square9">
+        <p id="square9-name" class="square-name"></p>
+        <p id="square9-value"></p>
+        <p id="square9-owner"></p>
+        <p id="square9-residents"></p>
+      </div>
+      <div class="cell square" id="square10">
+        <p id="square10-name" class="square-name"></p>
+        <p id="square10-value"></p>
+        <p id="square10-owner"></p>
+        <p id="square10-residents"></p>
+      </div>
+      
+      <div class="cell info">
+        <p>Current Turn:</p><p id="currentTurn">Alice</p>
+        <button id="rollButton"><canvas width="60" height="60"></canvas></button>
+        <br></br>
+    
+
+     
+      </div>
+      
+    </div>
+    <div class="row">
+      <div class="cell square" id="square6">
+        <p id="square6-name" class="square-name"></p>
+        <p id="square6-value"></p>
+        <p id="square6-owner"></p>
+        <p id="square6-residents"></p>
+      </div>
+      <div class="cell middle"></div>
+      <div class="cell middle"></div>
+      <div class="cell square" id="square11">
+        <p id="square11-name" class="square-name"></p>
+        <p id="square11-value"></p>
+        <p id="square11-owner"></p>
+        <p id="square11-residents"></p>
+      </div>
+      <div class="cell info">
+        <p>Last Message:</p>
+        <p id="messagePara"></p>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="cell square" id="square5">
+        <p id="square5-name" class="square-name"></p>
+        <p id="square5-value"></p>
+        <p id="square5-owner"></p>
+        <p id="square5-residents"></p>
+      </div>
+      <div class="cell middle"></div>
+      <div class="cell middle"></div>
+      <div class="cell square" id="square12">
+        <p id="square12-name" class="square-name"></p>
+        <p id="square12-value"></p>
+        <p id="square12-owner"></p>
+        <p id="square12-residents"></p>
+      </div>
+      <div class="cell info" id="player1-info">
+        <p>Player 1</p>
+        <p id="player1-info_name">name</p>
+        
+        <p id="player1-info_token"></p>
+        <p id="player1-info_cash">cash</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="cell square" id="square4">
+        <p id="square4-name" class="square-name"></p>
+        <p id="square4-value"></p>
+        <p id="square4-owner"></p>
+        <p id="square4-residents"></p>
+      </div>
+      <div class="cell square" id="square3">
+        <p id="square3-name" class="square-name"></p>
+        <p id="square3-value"></p>
+        <p id="square3-owner"></p>
+        <p id="square3-residents"></p>
+      </div>
+      <div class="cell square" id="square2">
+        <p id="square2-name" class="square-name"></p>
+        <p id="square2-value"></p>
+        <p id="square2-owner"></p>
+        <p id="square2-residents"></p>
+      </div>
+      <div class="cell start" id="square1">
+        <p class="square-name">Start</p>
+        <p id="square1-residents"></p>
+      </div>
+      <div class="cell info" id="player2-info">
+        <p>Player 2</p>
+        <p id="player2-info_name">name</p>
+        <p id="player2-info_token"></p>
+        <p id="player2-info_cash">cash</p>
+      </div>
+
+
+    </div>
+
+  </section>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="table">
+  <section>
+    <details class="card">
+      <summary class="property lightblue">
+        <span class="eyebrow">Farmer's Fate</span>
+        Catfish Pond Deed
+      </summary>
+      <p class="rent">rent $6.</p>
+      <div class="priceTable">
+        <div class="qty">with 1 farm</div><div class="price">$ 30.</div>
+        <div class="qty">with 2 farms</div><div class="price">90.</div>
+        <div class="qty">with 3 farms</div><div class="price">270.</div>
+        <div class="qty">with 4 farms</div><div class="price">400.</div>
+      </div>
+      <p class="hotel">With Crops $550.</p>
+      <p class="mortgage">Mortgage value $50.</p>
+      <p class="houses">Farms cost $50. each</p>
+      <p class="hotelCost">Crops cost, $50. plus 4 farms.</p>
+
+    </details>
+
+    <details class="card">
+      <summary class="property lightblue">
+        <span class="eyebrow">HarvestFest</span>
+        Hay Cutting Drive Deed
+      </summary>
+      <p class="rent">rent $6.</p>
+      <div class="priceTable">
+        <div class="qty">with 1 farm</div><div class="price">$ 30.</div>
+        <div class="qty">with 2 farms</div><div class="price">90.</div>
+        <div class="qty">with 3 farms</div><div class="price">270.</div>
+        <div class="qty">with 4 farms</div><div class="price">400.</div>
+      </div>
+      <p class="hotel">With Crops $550.</p>
+      <p class="mortgage">Mortgage value $50.</p>
+      <p class="houses">Farms cost $50. each</p>
+      <p class="hotelCost">Crop costs, $50. plus 4 farms.</p>
+    </details>
+
+   
+  </section>
+
+  <section>
+    <details class="card">
+      <summary class="property yellow">
+        <span class="eyebrow">Insurance Crops</span>
+        Cattle Call Deed
+      </summary>
+      <p class="rent">rent $22.</p>
+      <div class="priceTable">
+        <div class="qty">with 1 farm</div><div class="price">$ 110.</div>
+        <div class="qty">with 2 farms </div><div class="price">330.</div>
+        <div class="qty">with 3 farms </div><div class="price">800.</div>
+        <div class="qty">with 4 farms </div><div class="price">975.</div>
+        <div class="c"></div>
+      </div>
+      <p class="hotel">With crops $1150.</p>
+      <p class="mortgage">Mortgage value $130.</p>
+      <p class="houses">Farms cost $150. each</p>
+      <p class="hotelCost">Crop costs, $150. plus 4 farms.</p>
+
+    </details>
+
+    <details class="card">
+      <summary class="property yellow">
+        <span class="eyebrow">Purchasing Property</span>
+       Big Red Barn Deed
+      </summary>
+      <p class="rent">rent $22.</p>
+      <div class="priceTable">
+        <div class="qty">with 1 farm</div><div class="price">$ 110.</div>
+        <div class="qty">with 2 farms </div><div class="price">330.</div>
+        <div class="qty">with 3 farms </div><div class="price">800.</div>
+        <div class="qty">with 4 farms </div><div class="price">975.</div>
+      </div>
+      <p class="hotel">With Crop $1150.</p>
+      <p class="mortgage">Mortgage value $130.</p>
+      <p class="houses">Farms cost $150. each</p>
+      <p class="hotelCost">Crop costs, $150. plus 4 farms.</p>
+
+    </details>
+
+   
+
+  </section>
+
+  <section>
+    <details class="card">
+      <summary class="property darkblue">
+        <span class="eyebrow">Free Manure</span>
+        Free Manure Deed
+      </summary>
+      <p class="rent">rent $35.</p>
+      <div class="priceTable">
+        <div class="qty">with 1 farm</div><div class="price">$ 175.</div>
+        <div class="qty">with 2 farms </div><div class="price">500.</div>
+        <div class="qty">with 3 farms </div><div class="price">1100.</div>
+        <div class="qty">with 4 farms </div><div class="price">1300.</div>
+      </div>
+      <p class="hotel">With Crop $1500.</p>
+      <p class="mortgage">Mortgage value $175.</p>
+      <p class="houses">Farms cost $200. each</p>
+      <p class="hotelCost">Crop costs, $200. plus 4 farms.</p>
+    </details>
+
+    <details class="card">
+      <summary class="property darkblue">
+        <span class="eyebrow">Livestock Sales</span>
+        Bale Out Blvd Deed
+      </summary>
+      <p class="rent">rent $50.</p>
+      <div class="priceTable">
+        <div class="qty">with 1 farm</div><div class="price">$ 200.</div>
+        <div class="qty">with 2 farms</div><div class="price">600.</div>
+        <div class="qty">with 3 farms</div><div class="price">1400.</div>
+        <div class="qty">with 4 farms</div><div class="price">1700.</div>
+      </div>
+      <p class="hotel">With Crops $2000.</p>
+      <p class="mortgage">Mortgage value $200.</p>
+      <p class="houses">Farms cost $200. each</p>
+      <p class="hotelCost">Crops cost, $200. plus 4 farms.</p>
+
+    </details>
+  
+  </section>
+</div>
+ 
+
+</body>
+<!-- partial -->
+  <script src='https://unpkg.com/zdog@1/dist/zdog.dist.min.js'></script>
+<script src='https://unpkg.com/animejs@3.1.0/lib/anime.min.js'></script><script  src="./script.js"></script>
+
+  
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+  <style>
+    body {
+      padding-top: 15px;
+    }
+
+    .tooltip {
+      white-space: pre;
+    }
+  </style>
+</head>
+<body>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="form-horizontal col-md-2">
+        <div class="form-group form-group-sm">
+          <label for="season" class="control-label col-md-6">Season</label>
+          <div class="col-md-6">
+            <select id="season" class="form-control input-sm">
+              <option selected>Spring</option>
+              <option>Summer</option>
+              <option>Fall</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group form-group-sm">
+          <label for="farming-level" class="control-label col-md-6">Farming level</label>
+          <div class="col-md-6">
+            <input id="farming-level" class="form-control input-sm" type="number" min="0" max="10" value="0"></input>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-horizontal col-md-2">
+        <div class="form-group form-group-sm">
+          <label for="day" class="control-label col-md-6">Starting day</label>
+          <div class="col-md-6">
+            <input id="day" class="form-control input-sm" type="number" min="1" max="28" value="1"></input>
+          </div>
+        </div>
+
+        <div class="form-group form-group-sm">
+          <label for="gold" class="control-label col-md-6">Starting gold</label>
+          <div class="col-md-6">
+            <input id="gold" class="form-control input-sm" type="number" min="1" value="500"></input>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-horizontal col-md-2">
+        <div class="form-group form-group-sm">
+          <label for="watering-can" class="control-label col-md-6">Watering can</label>
+          <div class="col-md-6">
+            <select id="watering-can" class="form-control input-sm">
+              <option selected>Starting</option>
+              <option>Copper</option>
+              <option>Steel</option>
+              <option>Gold</option>
+              <option>Iridium</option>
+              <option>Sprinkler</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group form-group-sm">
+          <label for="hoe" class="control-label col-md-6">Hoe</label>
+          <div class="col-md-6">
+            <select id="hoe" class="form-control input-sm">
+              <option selected>Starting</option>
+              <option>Copper</option>
+              <option>Steel</option>
+              <option>Gold</option>
+              <option>Iridium</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-horizontal col-md-2">
+        <div class="form-group form-group-sm">
+          <label for="energy" class="control-label col-md-6">Max energy</label>
+          <div class="col-md-6">
+            <input id="energy" class="form-control input-sm" type="number" min="270" value="270"></input>
+          </div>
+        </div>
+
+        <div class="form-group form-group-sm">
+          <label for="max-crops" class="control-label col-md-6">Max crops</label>
+          <div class="col-md-6">
+            <input id="max-crops" class="form-control input-sm" type="number" min="1" value="9999"></input>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-horizontal col-md-2">
+        <div class="form-group form-group-sm">
+          <input class="form-check-input" type="checkbox" value="" id="artisan-goods">
+          <label class="form-check-label" for="artisan-goods">
+            Artisan goods
+          </label>
+        </div>
+
+        <div class="form-group form-group-sm">
+          <input class="form-check-input" type="checkbox" value="" id="artisan">
+          <label class="form-check-label" for="artisan">
+            Artisan skill
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div id="crops" class="panel-group" role="tablist" aria-multiselectable="true"></div>
+  </div>
+
+   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+
+</body>
+</html>
+<!-- partial -->
+  <script src='https://unpkg.com/zdog@1/dist/zdog.dist.min.js'></script>
+<script src='https://unpkg.com/animejs@3.1.0/lib/anime.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>

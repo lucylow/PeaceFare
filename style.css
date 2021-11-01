@@ -1,0 +1,200 @@
+body{
+    padding-top: 100px;
+    padding-left: 150px;
+    scroll-behavior: smooth;
+    overflow: scroll;
+    display: table-cell;
+    vertical-align: middle;
+    display: table;
+    margin: center;
+
+}
+
+section {
+  border: #ccc solid 1px;
+  border-radius: 4px;
+  margin: 10px 0;
+  padding: 0 16px;
+}
+
+input[type=range] {
+    -webkit-appearance: none;
+    background-color: #dfc45b;
+    width: 200px;
+    height:20px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+     -webkit-appearance: none;
+    background-color: #ac1d2d;
+    width: 26px;
+    height: 26px;
+}
+
+document.getElementById("input").style.backgroundColor = '#dfc45b';
+button {
+    text-transform: uppercase;
+    color: inherit;
+}
+button:disabled {
+    cursor: not-allowed;
+}
+
+
+
+.game_board {
+  width: 60em;
+  height: em;
+
+}
+
+.row {
+  background-color: #ac1d2d;
+  width: 60em;
+  height: 12em;
+  display: table-row;
+}
+
+.cell {
+  outline: .25em solid white;
+  background-color: #e0c45b;
+  display: table-cell;
+  width: 12em;
+  height: 12em;
+  text-align: center;
+  padding: .5em;
+
+}
+
+.square-name {
+  font-weight: bold;
+  text-transform: capitalize;
+  font-size:20px;
+}
+
+.middle, .info {
+  background-color: #ac1d2d;
+}
+
+/*Tokens*/
+.Triangle {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 40px solid black;
+}
+
+.Circle {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background: black;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+}
+
+#player1-info_token {
+  display: inline-block;
+  margin: 0;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 20px solid black;
+}
+
+#player2-info_token {
+  display: inline-block;
+  margin: 0;
+  width: 20px;
+  height: 20px;
+  background: black;
+  -moz-border-radius: 50px;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+}
+
+
+
+
+.table {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+
+.card {
+  width: 340px;
+  max-height: 460px; 
+  border: 1px solid #222;
+  box-sizing: border-box;
+  padding: 10px;
+  text-align: center;
+  margin: 10px;
+  box-shadow: 0 0 8px rgba(43,47,62,.1);
+  transition: 1s all ease;
+}
+
+.property {
+  border: 2px solid #222;
+  text-align: center;
+  padding: 5px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  outline: none;
+  transition: 1s all ease;
+}
+
+.yellow { background: #e0c45b; }
+.lightblue { background: #e0c45b; }
+.darkblue { background: #e0c45b; }
+
+.eyebrow {
+  display: block;
+  margin-bottom: 5px;
+  color: #a81a2b;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+::-webkit-details-marker {
+  display: none;
+}
+
+.rent {
+  margin-top: 10px;
+}
+
+.priceTable {
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  
+}
+
+.priceTable .qty,
+.priceTable .price { 
+  width: 50%;
+}
+
+.priceTable .qty {
+  text-transform: capitalize;
+  text-align: left;
+}
+
+.priceTable .price {
+  text-align: right;
+}
+
+.hotel {
+  margin-top: 5px;
+}
+
+.disclaimer {
+  font-size: 10px;
+  margin: 10px 0;
+}
