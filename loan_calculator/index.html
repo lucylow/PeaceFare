@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Interest rate calculator</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css'><link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<img src="https://github.com/lucylow/PeaceFare/blob/main/game_assets/Screen%20Shot%202021-10-31%20at%208.37.31%20PM.png?raw=true" alt="" style="height:600px; margin-left:333px;">  
+<br>/<br>
+<div class="container" ng-app="InterestApp" ng-controller="MainCtrl">
+  <h1 class="page-header">Loan Calculator </h1>
+  <form class="form" name="interestEntryForm" ng-submit="createEntry(interestEntryForm)">
+    <div class="row">
+      <div class="col-sm-6">
+        <dl>Issued At (<a href="" ng-click="resetEntryDate()">set to now</a>)
+        </dl>
+        <dd>
+          <input class="form-control" type="date" ng-model="entry.date" required="required"/>
+          <input class="form-control" type="time" ng-model="entry.date" required="required"/>
+        </dd>
+      </div>
+      <div class="col-sm-6">
+        <dl>Issued Amount ({{currencySymbol}})
+          <input class="form-control" type="number" ng-model="entry.amount" step="{{currencyStep}}" min="{{currencyStep}}" placeholder="0.00" required="required"/>
+        </dl>
+        <dl>Interest Rate (% p/day)
+          <input class="form-control" type="number" ng-model="entry.interest" step="0.000001" min="0" placeholder="0.00%" required="required"/>
+        </dl>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <dl>
+          <div class="btn-group">
+            <button class="btn btn-success" type="submit" ng-disabled="!interestEntryForm.$valid">Create Entry</button>
+            <button class="btn btn-danger" type="button" ng-click="resetEntry()">Reset</button>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </form>
+  <div ng-show="loans.length">
+    <hr/><span class="text-success pull-right"><strong>Total Earned:</strong> <span ng-bind="earningTotal()|currency:currencySymbol:currencyPrecision"></span></span>
+    <h3>Active</h3>
+    <div class="list-group">
+      <div class="list-group-item" ng-repeat="loan in loans|orderBy:'-issued'">
+        <div class="btn-group pull-right">
+          <button class="btn btn-sm btn-warning" ng-click="settleLoan(loan)"><span class="fa fa-balance-scale"></span></button>
+        </div>
+        <h5 class="list-group-item-head"><span ng-bind="loan.age|ago"></span> <small class="text-muted tiny" ng-bind="loan.issued|date:'short'"></small>
+        </h5>
+        <hr/>
+        <p class="list-group-item-text small"><span class="text-success pull-right"><strong class="small">Earned:</strong> <span>{{loan.earnings|currency:currencySymbol:currencyPrecision}}</span></span><strong class="small">Amount:</strong> <span>{{loan.amount|currency:currencySymbol:currencyPrecision}}</span> <strong class="small">Interest:</strong> <span>{{loan.interest*100|percent:2}} <small>(or {{loan.earnPerDay|currency:currencySymbol:currencyPrecision}} p/day)</small></span>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div ng-show="settled.length">
+    <hr/><span class="text-success pull-right"><strong>Total Earned:</strong> <span ng-bind="settleTotal()|currency:currencySymbol:currencyPrecision"></span></span>
+    <h3>Settled</h3>
+    <div class="list-group">
+      <div class="list-group-item" ng-repeat="loan in settled|orderBy:'-settled'">
+        <h5 class="list-group-item-head"><span ng-bind="loan.settled|date:'short'"></span> <small class="text-muted tiny" ng-bind="loan.age|duration"></small>
+        </h5>
+        <hr/>
+        <p class="list-group-item-text small"><span class="text-success pull-right"><strong class="small">Earned:</strong> <span>{{loan.earnings|currency:currencySymbol:currencyPrecision}}</span></span><strong class="small">Amount:</strong> <span>{{loan.amount|currency:currencySymbol:currencyPrecision}}</span> <strong class="small">Interest:</strong> <span>{{loan.interest*100|percent:2}} <small>(or {{loan.earnPerDay|currency:currencySymbol:currencyPrecision}} p/day)</small></span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.3/ui-bootstrap.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.13.3/ui-bootstrap-tpls.min.js'></script>
+<script src='https://momentjs.com/downloads/moment.min.js'></script><script  src="./script.js"></script>
+
+</body>
+</html>
