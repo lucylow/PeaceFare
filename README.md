@@ -6,7 +6,6 @@
   [![Status](https://img.shields.io/badge/status-work--in--progress-success.svg)]()
   [![GitHub Issues](https://img.shields.io/github/issues/lucylow/peacefare.svg)](https://github.com/lucylow/peacefare/issues)
   [![GitHub Pull Requests](https://img.shields.io/github/issues-pr/lucylow/peacefare.svg)](https://github.com/lucylow/peacefare/pulls)
-  [![License](https://img.shields.io/bower/l/bootstrap)]()
 
 </div>
 
